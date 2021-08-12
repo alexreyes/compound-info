@@ -6,6 +6,9 @@ import ProgressRing from 'components/ProgressRing';
 import Row from 'components/Row';
 import Column from 'components/Column';
 import TooltipText from 'components/TooltipText';
+import { DefaultButton } from 'components/Button/defaultButton';
+import { useSupply } from 'store/hooks';
+import { SupplyButton } from 'components/Button/supplyButton';
 
 const Card = styled.div`
 	display: flex;
@@ -44,6 +47,42 @@ export function StatCard({ title, value, unit, tooltipContent }) {
 			</Row>
 			<Row>
 				<Typography.displayL>{formattedValue}</Typography.displayL>
+			</Row>
+		</StyledStatCard>
+	);
+}
+
+const click = () => {
+	alert('TODO');
+};
+
+export function SupplyCard({ title, value, unit, tooltipContent }) {
+	const formattedValue = formatNumber(value, unit);
+	return (
+		<StyledStatCard>
+			<Row>
+				<TooltipText baseText={<CardHeader>{title}</CardHeader>} tooltipContent={tooltipContent} />
+			</Row>
+			<Row>
+				<Typography.displayL>{formattedValue}</Typography.displayL>
+				<div style={{ float: 'right' }}>
+					<SupplyButton text="Supply"></SupplyButton>
+				</div>
+			</Row>
+		</StyledStatCard>
+	);
+}
+
+export function BorrowCard({ title, value, unit, tooltipContent }) {
+	const formattedValue = formatNumber(value, unit);
+	return (
+		<StyledStatCard>
+			<Row>
+				<TooltipText baseText={<CardHeader>{title}</CardHeader>} tooltipContent={tooltipContent} />
+			</Row>
+			<Row>
+				<Typography.displayL>{formattedValue}</Typography.displayL>
+				<DefaultButton customOnClick={click} text="Borrow"></DefaultButton>
 			</Row>
 		</StyledStatCard>
 	);

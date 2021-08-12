@@ -2,6 +2,7 @@ import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Overview from 'pages/Overview';
+import AppPage from 'pages/AppPage';
 import Market from 'pages/Market';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
@@ -57,7 +58,8 @@ function App() {
 			</HeaderWrapper>
 			<StyledBody>
 				<Switch>
-					<Route exact strict path="/" component={Overview} />
+					<Route exact strict path="/" component={AppPage} />
+					<Route exact strict path="/overview" component={Overview} />
 					<Route exact strict path="/:coin" component={Market} />
 				</Switch>
 			</StyledBody>
