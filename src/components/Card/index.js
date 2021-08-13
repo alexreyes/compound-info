@@ -9,6 +9,7 @@ import TooltipText from 'components/TooltipText';
 import { DefaultButton } from 'components/Button/defaultButton';
 import { useSupply } from 'store/hooks';
 import { SupplyButton } from 'components/Button/supplyButton';
+import { CollateralButton } from 'components/Button/collateralButton';
 
 const Card = styled.div`
 	display: flex;
@@ -67,6 +68,7 @@ export function SupplyCard({ title, value, unit, tooltipContent }) {
 				<Typography.displayL>{formattedValue}</Typography.displayL>
 				<div style={{ float: 'right' }}>
 					<SupplyButton text="Supply"></SupplyButton>
+					<CollateralButton></CollateralButton>
 				</div>
 			</Row>
 		</StyledStatCard>

@@ -47,7 +47,7 @@ export default function Header() {
 			<Row padding={'0 ' + theme.spacing.lg} justify="space-between">
 				<Row>
 					<StyledInternalLink to="/">
-						<Typography.displayL>Compound Finance remake</Typography.displayL>
+						<Typography.displayL>Compound Finance</Typography.displayL>
 					</StyledInternalLink>
 				</Row>
 				<HideSmall>
