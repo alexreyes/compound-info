@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useGlobalStore } from './index';
 import { requestGasData, requestApyData, requestSummaryData } from './requests';
 import { queryApyData, querySummaryData } from './queries';
+import Web3 from 'web3';
+import cEthRinkeby from '../utils/cEthAbi.json';
 
 // Custom hooks which are used by the app to interface with the store
 const retryTime = 2000; // Retry in 1000ms if there was an error
@@ -99,4 +101,23 @@ export function useGasData() {
 	}, [gasData, updateStore]);
 
 	return gasData;
+}
+
+export async function useSupply(store) {
+	const key = 'walletAddress';
+
+	const web3 = new Web3(Web3.givenProvider);
+	const cEthAddress = '0xd6801a1dffcd0a410336ef88def4320d6df1883e';
+
+	const compoundCEthContract = new web3.eth.Contract(cEthRinkeby, cEthAddress);
+
+	console.log('boutta supply cETH...');
+
+	await compoundCEthContract.methods.mint().send({
+		from: store[key],
+		gasLimit: web3.utils.toHex(1500000),
+		gasPrice: web3.utils.toHex(20000000000),
+		value: web3.utils.toHex(web3.utils.toWei('1', 'ether')),
+	});
+	console.log('Minted cETH!');
 }

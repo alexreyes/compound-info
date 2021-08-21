@@ -114,3 +114,24 @@ export function camelCaseToSentenceCase(camel) {
 	sentenceCase = sentenceCase.charAt(0).toUpperCase() + sentenceCase.slice(1);
 	return sentenceCase;
 }
+
+export const cTokenMappings = {
+	cAAVE: 'AAVE',
+	cBAT: 'BAT',
+	cCOMP: 'COMP',
+	cDAI: 'DAI',
+	cETH: 'ETH',
+	cLINK: 'LINK',
+	cMKR: 'MKR',
+	cREP: 'REP',
+	cSAI: 'SAI',
+	cSUSHI: 'SUSHI',
+	cTUSD: 'TUSD',
+	cUNI: 'UNI',
+	cUSDC: 'USDC',
+	cUSDT: 'USDT',
+	cWBTC: 'WBTC',
+	cWBTC2: 'WBTC',
+	cYFI: 'YFI',
+	cZRX: 'ZRX',
+};
