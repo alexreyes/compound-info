@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { Typography } from 'theme';
 import { formatNumber } from 'utils';
 import ProgressRing from 'components/ProgressRing';
-import Row from 'components/Row';
+import Row, { ResponsiveRow, ResponsiveJustifyRow } from 'components/Row';
 import Column from 'components/Column';
 import TooltipText from 'components/TooltipText';
 import { DefaultButton } from 'components/Button/defaultButton';
 import { useSupply } from 'store/hooks';
 import { SupplyButton } from 'components/Button/supplyButton';
 import { CollateralButton } from 'components/Button/collateralButton';
+import { StyledExternalInfoLink } from 'theme/components';
 
 const Card = styled.div`
 	display: flex;
@@ -90,15 +91,19 @@ export function BorrowCard({ title, value, unit, tooltipContent }) {
 	);
 }
 
-export function CoinInfoCard({ title, value }) {
+export function CoinInfoCard({ value, whitepaper, website, twitter, coingecko }) {
 	return (
 		<StyledStatCard>
 			<Row>
-				<CardHeader>{title}</CardHeader>
-			</Row>
-			<Row>
 				<Typography.body>{value}</Typography.body>
 			</Row>
+			<br />
+			<ResponsiveRow align="flex-start" xs>
+				<StyledExternalInfoLink href={whitepaper} content={'Whitepaper ↗'} />
+				<StyledExternalInfoLink href={website} content={'Website ↗'} />
+				<StyledExternalInfoLink href={twitter} content={'Twitter ↗'} />
+				<StyledExternalInfoLink href={coingecko} content={'Coingecko ↗'} />
+			</ResponsiveRow>
 		</StyledStatCard>
 	);
 }

@@ -13,7 +13,6 @@ export default function AppPage() {
 	var compound = new Compound(window.ethereum);
 	const [store, { updateStore }] = useGlobalStore();
 	const key = 'walletAddress';
-
 	var coins = [];
 
 	async function getUserInfo() {
