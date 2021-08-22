@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Typography } from 'theme';
 import { formatNumber } from 'utils';
@@ -7,8 +7,8 @@ import Row, { ResponsiveRow, ResponsiveJustifyRow } from 'components/Row';
 import Column from 'components/Column';
 import TooltipText from 'components/TooltipText';
 import { DefaultButton } from 'components/Button/defaultButton';
-import { useSupply } from 'store/hooks';
 import { SupplyButton } from 'components/Button/supplyButton';
+import { useGlobalStore } from '../../store/index';
 import { CollateralButton } from 'components/Button/collateralButton';
 import { StyledExternalInfoLink } from 'theme/components';
 
@@ -58,21 +58,27 @@ const click = () => {
 	alert('TODO');
 };
 
-export function SupplyCard({ title, value, unit, tooltipContent }) {
-	const formattedValue = formatNumber(value, unit);
+export function SupplyCard({ title, userTokens, tooltipContent }) {
 	return (
-		<StyledStatCard>
-			<Row>
-				<TooltipText baseText={<CardHeader>{title}</CardHeader>} tooltipContent={tooltipContent} />
-			</Row>
-			<Row>
-				<Typography.displayL>{formattedValue}</Typography.displayL>
-				<div style={{ float: 'right' }}>
-					<SupplyButton text="Supply"></SupplyButton>
-					<CollateralButton></CollateralButton>
-				</div>
-			</Row>
-		</StyledStatCard>
+		<>
+			{userTokens && (
+				<StyledStatCard>
+					<Row>
+						<TooltipText baseText={<CardHeader>{title}</CardHeader>} tooltipContent={tooltipContent} />
+					</Row>
+					{userTokens.map((token) => (
+						<Row key={token.name}>
+							<Typography.displayM>{token.name}</Typography.displayM>
+							<p>Balance: ${token.balance.toFixed(2)}</p>
+							<div style={{ float: 'right' }}>
+								<SupplyButton coin={token.name}></SupplyButton>
+								<CollateralButton></CollateralButton>
+							</div>
+						</Row>
+					))}
+				</StyledStatCard>
+			)}
+		</>
 	);
 }
 
@@ -84,7 +90,7 @@ export function BorrowCard({ title, value, unit, tooltipContent }) {
 				<TooltipText baseText={<CardHeader>{title}</CardHeader>} tooltipContent={tooltipContent} />
 			</Row>
 			<Row>
-				<Typography.displayL>{formattedValue}</Typography.displayL>
+				<Typography.displayM>{formattedValue}</Typography.displayM>
 				<DefaultButton customOnClick={click} text="Borrow"></DefaultButton>
 			</Row>
 		</StyledStatCard>

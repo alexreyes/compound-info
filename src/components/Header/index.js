@@ -55,7 +55,6 @@ export default function Header() {
 						<StyledInternalLink to="/overview">
 							<Typography.displayS>Markets</Typography.displayS>
 						</StyledInternalLink>
-						<break></break>
 						<a href="https://comp.vote/" rel="noopener noreferrer" target="_blank">
 							<Typography.displayS>Governance</Typography.displayS>
 						</a>
