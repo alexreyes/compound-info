@@ -4,7 +4,6 @@ import styled, { useTheme } from 'styled-components';
 import Row from 'components/Row';
 import Button from 'components/Button';
 import { Typography } from 'theme';
-import { useGlobalStore } from '../../store/index';
 import Compound from '@compound-finance/compound-js';
 
 export function SupplyButton({ coin }) {
